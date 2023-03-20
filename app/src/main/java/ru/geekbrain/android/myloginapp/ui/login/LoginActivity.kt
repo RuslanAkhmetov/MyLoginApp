@@ -1,4 +1,4 @@
-package ru.geekbrain.android.myloginapp
+package ru.geekbrain.android.myloginapp.ui.login
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.core.view.isVisible
+import ru.geekbrain.android.myloginapp.app
 import ru.geekbrain.android.myloginapp.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
@@ -55,7 +56,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         return Handler(Looper.getMainLooper())
     }
 
-    private fun restorePresenter(): LoginPresenter{
-        return  lastCustomNonConfigurationInstance as? LoginPresenter ?: LoginPresenter()
+    private fun restorePresenter(): LoginPresenter {
+        return  lastCustomNonConfigurationInstance as? LoginPresenter
+            ?: LoginPresenter(app.loginUseCase)
     }
 }
